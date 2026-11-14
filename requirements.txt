@@ -1,5 +1,6 @@
 streamlit
 xgboost
+imbalanced-learn
 pandas
 numpy
 matplotlib
