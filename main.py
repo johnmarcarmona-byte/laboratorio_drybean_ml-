@@ -63,24 +63,67 @@ st.subheader("📊 Datos ingresados del grano:")
 st.write(df_input)
 
 # Botón de predicción conectado al archivo .pkl
+
+
+# Botón de predicción conectado al archivo .pkl
 if st.button("Clasificar Variedad"):
-  # Buscar el modelo en la carpeta o en la raíz de forma segura
-  posibles_rutas = ["04_modelado/modelo_xgboost.pkl", "modelo_xgboost.pkl"]
-  ruta_modelo = None
 
-  for r in posibles_rutas:
-    if os.path.exists(r):
-      ruta_modelo = r
-      break
+    ruta_modelo = "04_modelado/modelo_xgboost.pkl"
 
-  if ruta_modelo:
-    # 1. Cargar el modelo guardado previamente
-    model = joblib.load(ruta_modelo)
+    if os.path.exists(ruta_modelo):
 
-    # 2. Realizar la predicción real con las 16 características
-    prediccion = model.predict(df_input)
+        try:
+            st.write("Archivo del modelo encontrado.")
 
-    # 3. Mostrar el resultado en pantalla
-    st.success(f"🎉 La variedad predicha para el frijol es: **{str(prediccion[0]).upper()}**")
-  else:
-    st.error("⚠️ No se encontró el archivo `modelo_xgboost.pkl`. Asegúrate de subirlo a tu repositorio de GitHub (en la raíz o en la carpeta `04_modelado/`).")
+            # Cargar modelo
+            model = joblib.load(ruta_modelo)
+
+            st.success("Modelo cargado correctamente.")
+
+            # Realizar predicción
+            prediccion = model.predict(df_input)
+
+            # Mostrar resultado
+            st.success(
+                f"🎉 La variedad predicha para el frijol es: **{str(prediccion[0]).upper()}**"
+            )
+
+        except ModuleNotFoundError as e:
+            st.error(f"No se encuentra esta librería: {e.name}")
+            st.exception(e)
+
+        except Exception as e:
+            st.error(f"Error al cargar o ejecutar el modelo: {e}")
+            st.exception(e)
+
+    else:
+        st.error(
+            "No se encontró el archivo modelo_xgboost.pkl "
+            "en la carpeta 04_modelado."
+        )
+
+
+
+
+
+# if st.button("Clasificar Variedad"):
+#   # Buscar el modelo en la carpeta o en la raíz de forma segura
+#   posibles_rutas = ["04_modelado/modelo_xgboost.pkl", "modelo_xgboost.pkl"]
+#   ruta_modelo = None
+
+#   for r in posibles_rutas:
+#     if os.path.exists(r):
+#       ruta_modelo = r
+#       break
+
+#   if ruta_modelo:
+#     # 1. Cargar el modelo guardado previamente
+#     model = joblib.load(ruta_modelo)
+
+#     # 2. Realizar la predicción real con las 16 características
+#     prediccion = model.predict(df_input)
+
+#     # 3. Mostrar el resultado en pantalla
+#     st.success(f"🎉 La variedad predicha para el frijol es: **{str(prediccion[0]).upper()}**")
+#   else:
+#     st.error("⚠️ No se encontró el archivo `modelo_xgboost.pkl`. Asegúrate de subirlo a tu repositorio de GitHub (en la raíz o en la carpeta `04_modelado/`).")
