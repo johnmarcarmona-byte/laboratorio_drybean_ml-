@@ -54,11 +54,11 @@ Sigue estos pasos para clonar el repositorio y configurar tu entorno de desarrol
 cd nombre-del-repo
 2. Crear y activar un entorno virtual (recomendado):
 ```text
-        python -m venv venv
-        # En Windows:
-        venv\Scripts\activate
-        # En macOS/Linux:
-        source venv/bin/activate
+python -m venv venv
+# En Windows:
+venv\Scripts\activate
+# En macOS/Linux:
+source venv/bin/activate
 ```
 4. Instalar las dependencias: pip install -r requirements.txt
 
