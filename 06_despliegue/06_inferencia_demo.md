@@ -1,4 +1,4 @@
-# Fase 6: Despliegue del Modelo (CRISP-DM)
+# Despliegue del Modelo (CRISP-DM)
 
 ## Arquitectura de Despliegue
 Para poner el modelo a disposición de los usuarios finales sin requerir configuración local de Python, se implementó la siguiente arquitectura:
