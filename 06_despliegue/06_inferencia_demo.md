@@ -9,4 +9,4 @@ Para poner el modelo a disposición de los usuarios finales sin requerir configu
 * **Servidor en la Nube:** **Streamlit Community Cloud**, configurado para desplegar automáticamente cualquier actualización realizada en la rama `main`.
 
 ## URL de Producción
-* **Aplicación Web:** [https://TU-ENLACE-AQUI.streamlit.app](https://drybeanml-git.streamlit.app/)
+* **Aplicación Web:**  [Abrir Clasificador Dry Bean](https://drybeanml-git.streamlit.app/)
