@@ -31,10 +31,12 @@ El proyecto está organizado siguiendo rigurosamente las fases de la metodologí
 ├── 04_modelado/                 # Fase 4: Selección, entrenamiento y ajuste de hiperparámetros de los modelos.
 ├── 05_evaluacion/               # Fase 5: Evaluación de resultados frente a los objetivos de negocio y métricas de rendimiento.
 ├── 06_despliegue/               # Fase 6: Plan de despliegue, documentación y artefactos para producción.
+├── Datos/                       # Almacén de datasets (archivos raw y csv).
 ├── src/                         # Código fuente modular (scripts de python reutilizables).
 ├── .gitignore                   # Archivos y carpetas ignorados por Git.
 ├── requirements.txt             # Dependencias del proyecto (librerías y versiones).
 └── README.md                    # Documentación principal del proyecto.
+└── main.md                      # Aplicación web en Streamlit para el despliegue e inferencia del modelo.
 
 ```
 ## Descripción del Dataset
