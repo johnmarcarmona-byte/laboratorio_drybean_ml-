@@ -13,7 +13,7 @@ st.set_page_config(
 
 st.title("🫘 Clasificador de Variedades de Frijol Seco (Dry Bean)")
 st.markdown(
-    "Esta aplicación utiliza un modelo de Machine Learning (**XGBoost**) para clasificar la variedad del grano basándose en sus **16 características físicas y geométricas**."
+    "Esta aplicación utiliza el modelo final seleccionado tras la fase de evaluación (**modelo_final.pkl**) para clasificar la variedad del grano basándose en sus **16 características físicas y geométricas**."
 )
 
 st.sidebar.header("Parámetros del Grano (16 Features)")
@@ -64,33 +64,36 @@ df_input = user_input_features()
 st.subheader("📊 Datos ingresados del grano:")
 st.write(df_input)
 
-# Botón de predicción conectado al archivo .pkl
+# Botón de predicción conectado al modelo final en 05_evaluacion
 if st.button("Clasificar Variedad"):
 
-    ruta_modelo = "04_modelado/modelo_xgboost.pkl"
+    ruta_modelo = "05_evaluacion/modelo_final.pkl"
     ruta_encoder = "Datos/Datos Limpios/labelencoder.joblib"
 
     if os.path.exists(ruta_modelo):
         try:
-            # Cargar modelo
+            # Cargar el modelo final
             model = joblib.load(ruta_modelo)
 
             # Realizar predicción
             prediccion = model.predict(df_input)
-            clase_id = int(prediccion[0])
+            valor_predicho = prediccion[0]
 
-            # Traducir el índice (0-6) al nombre real de la variedad
-            if os.path.exists(ruta_encoder):
-                le = joblib.load(ruta_encoder)
-                nombre_variedad = le.inverse_transform([clase_id])[0]
+            # Verificar si la salida es numérica (0-6) para decodificarla, o si ya es texto
+            if isinstance(valor_predicho, (int, np.integer)) or str(valor_predicho).isdigit():
+                clase_id = int(valor_predicho)
+                if os.path.exists(ruta_encoder):
+                    le = joblib.load(ruta_encoder)
+                    nombre_variedad = le.inverse_transform([clase_id])[0]
+                else:
+                    clases = ["BARBUNYA", "BOMBAY", "CALI", "DERMASON", "HOROZ", "SEKER", "SIRA"]
+                    nombre_variedad = clases[clase_id]
+                texto_resultado = f"**{str(nombre_variedad).upper()}** (Clase {clase_id})"
             else:
-                clases = ["BARBUNYA", "BOMBAY", "CALI", "DERMASON", "HOROZ", "SEKER", "SIRA"]
-                nombre_variedad = clases[clase_id]
+                texto_resultado = f"**{str(valor_predicho).upper()}**"
 
             # Mostrar resultado
-            st.success(
-                f"🎉 La variedad predicha para el frijol es: **{str(nombre_variedad).upper()}** (Clase {clase_id})"
-            )
+            st.success(f"🎉 La variedad predicha para el frijol es: {texto_resultado}")
 
         except ModuleNotFoundError as e:
             st.error(f"No se encuentra esta librería: {e.name}")
@@ -102,5 +105,5 @@ if st.button("Clasificar Variedad"):
 
     else:
         st.error(
-            "⚠️ No se encontró el archivo `modelo_xgboost.pkl` en la carpeta `04_modelado`."
+            "⚠️ No se encontró el archivo `modelo_final.pkl` en la carpeta `05_evaluacion`."
         )
