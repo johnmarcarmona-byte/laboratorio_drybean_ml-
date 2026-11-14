@@ -50,17 +50,23 @@ El proyecto está organizado siguiendo rigurosamente las fases de la metodologí
 ## Instalación y Configuración
 Sigue estos pasos para clonar el repositorio y configurar tu entorno de desarrollo local:
 
-1. Clonar el repositorio: git clone [[https://github.com/tu-usuario/nombre-del-repo.git](https://github.com/tu-usuario/nombre-del-repo.git](https://github.com/johnmarcarmona-byte/laboratorio_drybean_ml-.git))
-cd nombre-del-repo
-2. Crear y activar un entorno virtual (recomendado):
-```text
+1. Clonar el repositorio:
+```bash
+git clone [https://github.com/johnmarcarmona-byte/laboratorio_drybean_ml-.git](https://github.com/johnmarcarmona-byte/laboratorio_drybean_ml-.git)
+cd laboratorio_drybean_ml-
+```
+3. Crear y activar un entorno virtual (recomendado):
+```bash
 python -m venv venv
 # En Windows:
 venv\Scripts\activate
 # En macOS/Linux:
 source venv/bin/activate
 ```
-4. Instalar las dependencias: pip install -r requirements.txt
+4. Instalar las dependencias:
+```bash
+pip install -r requirements.txt
+```
 
 ## Modelado (XGBoost)
 Durante la fase de modelado, se implementó y optimizó el algoritmo **XGBoost (Extreme Gradient Boosting)** para llevar a cabo la clasificación multiclase de las siete variedades de frijol seco (*Dry Bean*).
