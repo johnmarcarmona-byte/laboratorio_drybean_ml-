@@ -1,11 +1,12 @@
-## Despliegue en la Nube (Streamlit)
+# Fase 6: Despliegue del Modelo (CRISP-DM)
 
-El modelo de clasificación multiclase (**XGBoost**) se encuentra desplegado y operativo en la web mediante **Streamlit Community Cloud**, conectado directamente a este repositorio mediante integración continua.
+## Arquitectura de Despliegue
+Para poner el modelo a disposición de los usuarios finales sin requerir configuración local de Python, se implementó la siguiente arquitectura:
 
-* **Enlace a la aplicación en vivo:** [Abrir Clasificador Dry Bean](https://drybeanml-git.streamlit.app/)
-* **Archivo principal de ejecución:** `main.py`
+* **Control de Versiones:** Repositorio alojado en GitHub (`laboratorio_drybean_ml-`).
+* **Interfaz Gráfica:** Desarrollada en Python utilizando la librería **Streamlit** (`main.py`), permitiendo la captura interactiva de las variables predictoras.
+* **Gestión de Dependencias:** Definidas en `requirements.txt` para garantizar la reproducibilidad del entorno en el servidor.
+* **Servidor en la Nube:** **Streamlit Community Cloud**, configurado para desplegar automáticamente cualquier actualización realizada en la rama `main`.
 
-### ¿Cómo interactuar con la aplicación?
-1. Ingresa al enlace de la aplicación web.
-2. En el panel lateral izquierdo (**Parámetros del Grano**), ajusta los valores morfológicos y geométricos de la semilla (Área, Perímetro, Eje Mayor, Eje Menor, etc.).
-3. Haz clic en el botón **Clasificar Variedad** para obtener en tiempo real la predicción entre las siete clases registradas (*Seker, Barbunya, Bombay, Cali, Dermosan, Horoz* y *Sira*).
+## URL de Producción
+* **Aplicación Web:** [https://TU-ENLACE-AQUI.streamlit.app](https://drybeanml-git.streamlit.app/)
